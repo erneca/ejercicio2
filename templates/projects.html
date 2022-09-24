@@ -9,4 +9,14 @@
      in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
      and more recently with desktop publishing software like Aldus PageMaker including 
      versions of Lorem Ipsum.</p>
+
+<h1> Proyectos</h1>
+{{proyectos}}
+{% for proyecto in proyectos.all %}
+<li>{{proyecto.name}}</li>
+<li>{{proyecto.document}}</li>
+<li>{{proyecto.email}}</li>
+<br>
+{% endfor %}
+
 {% endblock content%}
