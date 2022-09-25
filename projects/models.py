@@ -5,6 +5,7 @@ from enum import unique
 from operator import truediv
 from unicodedata import name
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
