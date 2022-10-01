@@ -1,6 +1,7 @@
 import email
 from unittest.util import _MAX_LENGTH
 import uuid
+import datetime
 from email.policy import default
 from enum import unique
 from operator import truediv
@@ -38,6 +39,7 @@ class Agregar_moneda(models.Model):
         primary_key=True,
     )
     dinero = models.FloatField(max_length=200)
+    fecha_carga=models.DateTimeField()
     def __str__(self):
         return "%s the user_registered" % self.dinero
 

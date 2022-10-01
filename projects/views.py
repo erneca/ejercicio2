@@ -1,6 +1,9 @@
+from enum import auto
 from inspect import Attribute
 import re
+import datetime
 from xml.dom.minidom import Document
+from xmlrpc.client import DateTime
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse
@@ -120,5 +123,6 @@ def a_moneda(request):
         print(money2)
         print(dinero)
         user3.dinero= money2.dinero+float(dinero)
+        user3.fecha_carga=datetime.date.today()
         user3.save()
     return render(request, 'agregar_moneda.html')
