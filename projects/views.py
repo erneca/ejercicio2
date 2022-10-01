@@ -1,3 +1,4 @@
+from inspect import Attribute
 import re
 from xml.dom.minidom import Document
 from django.shortcuts import render, redirect
@@ -10,14 +11,16 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
+from django.db.models import F
 # Create your views here.
 
 def projects(request):
     proyectos=models.Proyecto.objects.all()
     Usuario_reg=models.Usuario_registrado.objects.all()
     Users_orig=models.User.objects.all()
+    Add_coin=models.Agregar_moneda.objects.all()
     return render(request, 'projects.html', {'proyectos':proyectos, 'Usuario_reg':Usuario_reg,
-    'Users_orig':Users_orig})
+    'Users_orig':Users_orig,'Add_coin':Add_coin})
 
 #def Usuarios_registrados(request):
 #    Usuario_reg=models.Usuario_registrado.objects.all()
@@ -101,3 +104,21 @@ def logoutUser(request):
     #messages.error(request, 'User was sucesfully logout')
     return HttpResponse("Logout Correcto")
     return redirect('login')
+
+def a_moneda(request):
+    if request.method == 'POST':    
+        dinero = request.POST['ad_dinero']
+        user3=models.Agregar_moneda()
+        user3.usuario_id = request.user.id
+        #dinero_actual=user3.dinero
+        #plata=user3.objects.get(id=request.user.id)
+        #print(plata)
+        money=models.Agregar_moneda.objects.all()
+        money2=models.Agregar_moneda.objects.get(usuario_id=request.user.id)
+        print(money2.dinero)
+        print(money)
+        print(money2)
+        print(dinero)
+        user3.dinero= money2.dinero+float(dinero)
+        user3.save()
+    return render(request, 'agregar_moneda.html')

@@ -37,6 +37,14 @@
 <br>
 {% endfor %}
 
+<h1> Add_coin</h1>
+{{Add_coin}}
+{% for Add_coin in Add_coin.all %}
+<li>{{Add_coin.usuario_id}}</li>
+<li>{{Add_coin.dinero}}</li>
+<br>
+{% endfor %}
+
 {% if request.user.is_authenticated %}
 <li class="header__menuItem"><a href="{% url 'logout' %}" class="btn btn--sub">Logout</a></li>
 

@@ -31,6 +31,16 @@ class Usuario_registrado(models.Model):
     def __str__(self):
         return "%s the user_registered" % self.document
 
+class Agregar_moneda(models.Model):
+    usuario = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+    dinero = models.FloatField(max_length=200)
+    def __str__(self):
+        return "%s the user_registered" % self.dinero
+
 #class Agregar_moneda(models.Model):
 #    cedula = models.ForeignKey(Usuario_registrado, on_delete=models.CASCADE)
 #    name = models.CharField(max_length=50)

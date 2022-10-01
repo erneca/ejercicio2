@@ -1,0 +1,22 @@
+
+    {% extends 'main.html'%}
+    {% block content %}
+
+    <h1> Aqui puedes agregar dinero a tu cuenta </h1>
+    <form action="{% url 'a_moneda' %}" method="POST">
+    {% csrf_token %}
+    {% if request.user.is_authenticated %}
+    <p> Bienvenido, {{request.user.username}}.</p>
+    <p> Tu ID es, {{request.user.id}}.</p>
+    <p> Cuanto dinero deseas adicionar?.</p>
+    <input type="number" name="ad_dinero" placeholder="ad_dinero" step="0.01"/>
+    <input type="submit" value="Adicionar Dinero " />
+    {% else  %}
+    <li class="header__menuItem"><a href="{% url 'login' %}" class="btn btn--sub">Login/Sign Up</a></li>
+    
+    {% endif  %}
+    </form>
+    {% endblock content%}
+</body>
+</html>
+
