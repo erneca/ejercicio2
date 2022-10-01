@@ -11,6 +11,13 @@
     <input type="text" name="email" placeholder="email"/>
     <input type="text" name="firstname" placeholder="firstname"/>
     <input type="text" name="lastname" placeholder="lastname"/>
+    <input type="text" name="document" placeholder="document"/>
+    <input type="text" multiple name="moneda" id="moneda"
+    list="drawcoins" required size="64">
+    <datalist id="drawcoins">
+        <option value="Pesos Colombianos"> COP</option>
+        <option value="Dolares Americanos"> USD</option>  
+    </datalist>
     <input type="submit" value="signup" />
 </form>
 {% endblock %}

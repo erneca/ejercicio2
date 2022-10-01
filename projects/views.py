@@ -1,4 +1,5 @@
 import re
+from xml.dom.minidom import Document
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse
@@ -13,7 +14,14 @@ from django.views import generic
 
 def projects(request):
     proyectos=models.Proyecto.objects.all()
-    return render(request, 'projects.html', {'proyectos':proyectos})
+    Usuario_reg=models.Usuario_registrado.objects.all()
+    Users_orig=models.User.objects.all()
+    return render(request, 'projects.html', {'proyectos':proyectos, 'Usuario_reg':Usuario_reg,
+    'Users_orig':Users_orig})
+
+#def Usuarios_registrados(request):
+#    Usuario_reg=models.Usuario_registrado.objects.all()
+#    return render(request, 'projects.html', {'Usuario_reg':Usuario_reg})
 
 @login_required(login_url='login')
 def project(request):
@@ -26,6 +34,8 @@ def signup(request):
         email = request.POST['email']
         firstname = request.POST['firstname']
         lastname = request.POST['lastname']
+        document = request.POST['document']
+        moneda = request.POST['moneda']
     # Verifica si existe
         if User.objects.filter(username=username).exists():
             return HttpResponse("Error:El nombre de usuario ya existe")
@@ -41,6 +51,11 @@ def signup(request):
             user.first_name = firstname
             user.last_name = lastname
             user.save()
+            user2=models.Usuario_registrado()
+            user2.usuario_id = user.id
+            user2.document=document
+            user2.moneda=moneda
+            user2.save()
         #return redirect('app:login')
     return render(request, 'signup.html')
 

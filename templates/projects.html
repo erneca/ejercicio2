@@ -19,6 +19,24 @@
 <br>
 {% endfor %}
 
+<h1> Usuario_registrado</h1>
+{{Usuario_reg}}
+{% for Usuario_reg in Usuario_reg.all %}
+<li>{{Usuario_reg.document}}</li>
+<li>{{Usuario_reg.usuario.id}}</li>
+<li>{{Usuario_reg.moneda}}</li>
+<br>
+{% endfor %}
+
+<h1> Users_orig</h1>
+{{Users_orig}}
+{% for Users_orig in Users_orig.all %}
+<li>{{Users_orig.id}}</li>
+<li>{{Users_orig.username}}</li>
+<li>{{Users_orig.email}}</li>
+<br>
+{% endfor %}
+
 {% if request.user.is_authenticated %}
 <li class="header__menuItem"><a href="{% url 'logout' %}" class="btn btn--sub">Logout</a></li>
 
